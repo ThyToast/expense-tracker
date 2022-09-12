@@ -12,7 +12,11 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Dashboard" component={DashboardScreen} />
-        <Stack.Screen name="AddExpense" component={AddExpenseScreen} />
+        <Stack.Screen
+          name="AddExpense"
+          component={AddExpenseScreen}
+          options={{ title: "Add Expense" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
