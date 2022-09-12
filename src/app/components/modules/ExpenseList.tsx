@@ -2,10 +2,11 @@ import { View, FlatList, StyleSheet, Pressable, Button } from "react-native";
 import { ExpenseData } from "../../data/ExpenseData";
 import { returnCurrency } from "../../utils/currencyUtil";
 import { FAB } from "@rneui/themed";
-import ExpenseItem from "./ExpenseItem";
-import ExpenseTotal from "./ExpenseTotal";
 import { useNavigation } from "@react-navigation/native";
 import { DashboardProp } from "../../data/NavigationData";
+
+import ExpenseItem from "./ExpenseItem";
+import ExpenseTotal from "./ExpenseTotal";
 
 const displayExpenseItem = ({ item }: { item: ExpenseData }) => {
   return <ExpenseItem {...item} />;

@@ -2,8 +2,7 @@ import { StyleSheet, Text, Pressable, View } from "react-native";
 import { returnCurrency } from "../../utils/currencyUtil";
 import { Card, Icon } from "@rneui/themed";
 import { ExpenseData } from "../../data/ExpenseData";
-import { SwipeRow } from "react-native-swipe-list-view";
-import { FC } from "react";
+import { SwipeRow, IPropsSwipeRow } from "react-native-swipe-list-view";
 
 //simple logic to dynamically add an icon
 const returnIcon = (category: string) => {
@@ -21,6 +20,7 @@ const returnIcon = (category: string) => {
 
 const ExpenseItem = ({ category, amount }: ExpenseData) => {
   return (
+    //@ts-ignore
     <SwipeRow
       disableRightSwipe={true}
       rightOpenValue={-70}
