@@ -3,15 +3,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import AddExpenseScreen from "./src/app/components/AddExpenseScreen";
 import DashboardScreen from "./src/app/components/DashboardScreen";
+import { RootStackParamList } from "./src/app/data/NavigationData";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Dashboard" component={DashboardScreen} />
-        <Stack.Screen name="Add Expense" component={AddExpenseScreen} />
+        <Stack.Screen name="AddExpense" component={AddExpenseScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
