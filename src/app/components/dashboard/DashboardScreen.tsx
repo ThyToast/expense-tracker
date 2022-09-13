@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 import ExpenseList from "./ExpenseList";
 import { ExpenseContext } from "../../context/ExpenseContext";
@@ -10,8 +10,12 @@ const DashboardScreen = () => {
 
   useEffect(() => {
     async function returnExpense() {
-      const expenses = await getExpense();
-      expenseContext.setExpense(expenses);
+      try {
+        const expenses = await getExpense();
+        expenseContext.setExpense(expenses);
+      } catch (error) {
+        alert("Unable to retrieve expenses");
+      }
     }
     returnExpense();
   }, []);

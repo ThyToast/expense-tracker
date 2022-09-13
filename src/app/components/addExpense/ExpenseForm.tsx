@@ -62,16 +62,16 @@ const ExpenseForm = () => {
   return (
     <Card>
       <Input
-        placeholder="Enter Amount"
-        keyboardType="number-pad"
-        onChangeText={updateExpense.bind(this, "amount")}
-        value={expense.amount}
-      />
-      <Input
         placeholder="Enter Category"
         keyboardType="ascii-capable"
         onChangeText={updateExpense.bind(this, "category")}
         value={expense.category}
+      />
+      <Input
+        placeholder="Enter Amount"
+        keyboardType="number-pad"
+        onChangeText={updateExpense.bind(this, "amount")}
+        value={expense.amount}
       />
 
       <View style={styles.toggleView}>

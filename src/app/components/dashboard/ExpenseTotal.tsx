@@ -1,17 +1,29 @@
 import { StyleSheet, Text } from "react-native";
 import { Card } from "@rneui/themed";
+import { returnCurrency } from "../../utils/currencyUtil";
 
-const ExpenseTotal = ({ totalExpense }: { totalExpense: string }) => {
+const ExpenseTotal = ({ totalExpense }: { totalExpense: number }) => {
+  function colorState(expenseAmount: number) {
+    if (expenseAmount < 0) return "red";
+    if (expenseAmount > 0) return "#57db3d";
+  }
+
   return (
-    <Card containerStyle={styles.cardBalance}>
-      <Text style={styles.cardText}>Balance: {totalExpense}</Text>
+    <Card
+      containerStyle={[
+        styles.cardBalance,
+        { backgroundColor: colorState(totalExpense) },
+      ]}
+    >
+      <Text style={styles.cardText}>
+        Balance: {returnCurrency(totalExpense)}
+      </Text>
     </Card>
   );
 };
 
 const styles = StyleSheet.create({
   cardBalance: {
-    backgroundColor: "#57db3d",
     borderRadius: 20,
     shadowColor: "#171717",
     elevation: 5,

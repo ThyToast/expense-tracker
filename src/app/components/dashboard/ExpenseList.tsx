@@ -3,7 +3,6 @@ import { FAB } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 
 import { ExpenseData } from "../../data/ExpenseData";
-import { returnCurrency } from "../../utils/currencyUtil";
 import { DashboardProp } from "../../data/NavigationData";
 
 import ExpenseItem from "./ExpenseItem";
@@ -28,7 +27,7 @@ const ExpenseList = ({ expense }: any) => {
 
   return (
     <View>
-      <ExpenseTotal totalExpense={returnCurrency(totalExpense)} />
+      <ExpenseTotal totalExpense={totalExpense} />
       <FlatList
         style={styles.expenseList}
         data={expense}

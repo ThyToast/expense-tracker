@@ -5,6 +5,7 @@ import { SwipeRow } from "react-native-swipe-list-view";
 import { ExpenseContext } from "../../context/ExpenseContext";
 import { ExpenseData } from "../../data/ExpenseData";
 import { returnCurrency } from "../../utils/currencyUtil";
+import { deleteExpense } from "../../api/expenseService";
 
 //simple logic to dynamically add an icon
 function returnIcon(category: string) {
@@ -22,9 +23,11 @@ function returnIcon(category: string) {
 
 const ExpenseItem = ({ id, category, amount }: ExpenseData) => {
   const expenseContext = useContext(ExpenseContext);
-  const deleteItem = (id: string) => {
+
+  async function deleteItem(id: string) {
     expenseContext.deleteExpense(id);
-  };
+    await deleteExpense(id);
+  }
 
   return (
     //@ts-ignore
