@@ -1,10 +1,11 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
+import ExpenseForm from "./ExpenseForm";
 
 const AddExpenseScreen = () => {
   return (
     <View>
-      <Text>AddExpenseScreen</Text>
+      <ExpenseForm />
     </View>
   );
 };

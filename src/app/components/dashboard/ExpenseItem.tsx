@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { StyleSheet, Text, Pressable, View } from "react-native";
-import { returnCurrency } from "../../utils/currencyUtil";
 import { Card, Icon } from "@rneui/themed";
+import { SwipeRow } from "react-native-swipe-list-view";
+import { ExpenseContext } from "../../context/ExpenseContext";
 import { ExpenseData } from "../../data/ExpenseData";
-import { SwipeRow, IPropsSwipeRow } from "react-native-swipe-list-view";
+import { returnCurrency } from "../../utils/currencyUtil";
 
 //simple logic to dynamically add an icon
 const returnIcon = (category: string) => {
@@ -18,7 +20,11 @@ const returnIcon = (category: string) => {
   }
 };
 
-const ExpenseItem = ({ category, amount }: ExpenseData) => {
+const ExpenseItem = ({ id, category, amount }: ExpenseData) => {
+  const expenseContext = useContext(ExpenseContext);
+  const deleteItem = (id: string) => {
+    expenseContext.deleteExpense(id);
+  };
   return (
     //@ts-ignore
     <SwipeRow
@@ -33,6 +39,9 @@ const ExpenseItem = ({ category, amount }: ExpenseData) => {
           <Pressable
             style={{ paddingVertical: 30, height: 100, paddingRight: 15 }}
             android_ripple={{ color: "grey" }}
+            onPress={() => {
+              deleteItem(id);
+            }}
           >
             <Text style={styles.cardDelete}>Delete</Text>
           </Pressable>

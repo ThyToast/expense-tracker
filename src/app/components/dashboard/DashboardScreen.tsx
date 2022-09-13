@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React, { useContext } from "react";
-import ExpenseList from "./modules/ExpenseList";
-import { ExpenseContext } from "../context/ExpenseContext";
+import ExpenseList from "./ExpenseList";
+import { ExpenseContext } from "../../context/ExpenseContext";
 
 const DashboardScreen = () => {
   const expenseContext = useContext(ExpenseContext);

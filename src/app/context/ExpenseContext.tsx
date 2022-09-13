@@ -18,7 +18,7 @@ const temp_data: ExpenseData[] = [
     id: "3",
     amount: 50.0,
     description: "income",
-    category: "kek",
+    category: "misc",
   },
   {
     id: "4",
@@ -85,8 +85,7 @@ export const ExpenseContext = createContext({
 const expenseReducer = (state: any, action: any) => {
   switch (action.type) {
     case "Add": {
-      const id = Date.toString();
-      return [{ ...action.payload, id: id }, ...state];
+      return [{ ...action.payload }, ...state];
     }
 
     case "Delete": {
