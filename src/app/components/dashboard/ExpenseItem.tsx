@@ -8,7 +8,7 @@ import { returnCurrency } from "../../utils/currencyUtil";
 
 //simple logic to dynamically add an icon
 const returnIcon = (category: string) => {
-  switch (category) {
+  switch (category.toLowerCase()) {
     case "food":
       return "utensils";
 
@@ -25,6 +25,7 @@ const ExpenseItem = ({ id, category, amount }: ExpenseData) => {
   const deleteItem = (id: string) => {
     expenseContext.deleteExpense(id);
   };
+
   return (
     //@ts-ignore
     <SwipeRow

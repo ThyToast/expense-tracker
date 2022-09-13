@@ -2,43 +2,61 @@ import { View, StyleSheet } from "react-native";
 import React, { useContext, useState } from "react";
 import { Button, Card, Input, Switch, Text } from "@rneui/themed";
 import { useId } from "react-id-generator";
+import { useNavigation } from "@react-navigation/native";
 
 import { ExpenseData } from "../../data/ExpenseData";
 import { ExpenseContext } from "../../context/ExpenseContext";
 import { AddExpenseProp } from "../../data/NavigationData";
-import { useNavigation } from "@react-navigation/native";
 
 const ExpenseForm = () => {
   const expenseContext = useContext(ExpenseContext);
   const navigation = useNavigation<AddExpenseProp>();
-  const [itemId] = useId();
 
+  const [itemId] = useId();
   const [expense, setExpense] = useState({
     amount: "",
     category: "",
   });
-
   const [checked, setChecked] = useState(false);
 
-  const updateExpense = (inputType: any, value: any) => {
+  function updateExpense(inputType: any, value: any) {
     setExpense((input) => {
       return {
         ...input,
         [inputType]: value,
       };
     });
-  };
+  }
 
-  const addExpense = () => {
+  function addExpense() {
     const expenseData: ExpenseData = {
       amount: checked ? +expense.amount : -expense.amount,
       id: itemId,
       category: expense.category,
       description: checked ? "Income" : "Expense",
     };
+    checkType(expenseData);
+  }
+
+  function checkType(expenseData: ExpenseData) {
+    const isAmountValid = !isNaN(expenseData.amount) && expense.amount !== "";
+    const isCategoryValid = expense.category.length !== 0;
+
+    if (!isAmountValid || !isCategoryValid) {
+      alert(
+        "Invalid Input, ensure that amount and category is entered correctly"
+      );
+      return;
+    }
+
+    submitExpense(expenseData);
+  }
+
+  function submitExpense(expenseData: ExpenseData) {
     expenseContext.addExpense(expenseData);
     navigation.goBack();
-  };
+  }
+
   return (
     <Card>
       <Input
