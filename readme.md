@@ -12,13 +12,12 @@ This app serves as a simple demonstration of my React Native skills.
 ## Demonstration
 - Add Expense
 
-
-![Add Expense](https://media.giphy.com/media/QmVat2dOKkufICMr2z/giphy.gif)
+![Add Expense](https://media.giphy.com/media/6vj462etj3dQjlujF8/giphy.gif)
 
 - Delete Expense
 
 
-![Delete Expense](https://media.giphy.com/media/6vj462etj3dQjlujF8/giphy.gif)
+![Delete Expense](https://media.giphy.com/media/QmVat2dOKkufICMr2z/giphy.gif)
 
 
 
