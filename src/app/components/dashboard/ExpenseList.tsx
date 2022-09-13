@@ -9,9 +9,9 @@ import { DashboardProp } from "../../data/NavigationData";
 import ExpenseItem from "./ExpenseItem";
 import ExpenseTotal from "./ExpenseTotal";
 
-const displayExpenseItem = ({ item }: { item: ExpenseData }) => {
+function displayExpenseItem({ item }: { item: ExpenseData }) {
   return <ExpenseItem {...item} />;
-};
+}
 
 const ExpenseList = ({ expense }: any) => {
   const navigation = useNavigation<DashboardProp>();
@@ -22,9 +22,9 @@ const ExpenseList = ({ expense }: any) => {
     0
   );
 
-  const addExpense = () => {
+  function toAddExpense() {
     navigation.navigate("AddExpense");
-  };
+  }
 
   return (
     <View>
@@ -36,7 +36,7 @@ const ExpenseList = ({ expense }: any) => {
         keyExtractor={(item) => item.id}
       />
       <FAB
-        onPress={addExpense}
+        onPress={toAddExpense}
         icon={{ name: "add", color: "white" }}
         size="large"
       />

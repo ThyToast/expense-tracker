@@ -7,7 +7,7 @@ import { ExpenseData } from "../../data/ExpenseData";
 import { returnCurrency } from "../../utils/currencyUtil";
 
 //simple logic to dynamically add an icon
-const returnIcon = (category: string) => {
+function returnIcon(category: string) {
   switch (category.toLowerCase()) {
     case "food":
       return "utensils";
@@ -18,7 +18,7 @@ const returnIcon = (category: string) => {
     default:
       return "money-check-alt";
   }
-};
+}
 
 const ExpenseItem = ({ id, category, amount }: ExpenseData) => {
   const expenseContext = useContext(ExpenseContext);

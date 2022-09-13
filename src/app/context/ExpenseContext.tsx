@@ -82,7 +82,7 @@ export const ExpenseContext = createContext({
   deleteExpense: (id: string) => {},
 });
 
-const expenseReducer = (state: any, action: any) => {
+function expenseReducer(state: any, action: any) {
   switch (action.type) {
     case "Add": {
       return [{ ...action.payload }, ...state];
@@ -97,7 +97,7 @@ const expenseReducer = (state: any, action: any) => {
     default:
       return state;
   }
-};
+}
 
 const ExpenseContextProvider = ({ children }: any) => {
   const [expenseState, dispatch] = useReducer(expenseReducer, temp_data);
