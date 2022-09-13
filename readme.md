@@ -10,10 +10,14 @@ This app serves as a simple demonstration of my React Native skills.
 - Firebase Database
 
 ## Demonstration
-Add Expense
+- Add Expense
+
+
 ![Add Expense](https://media.giphy.com/media/QmVat2dOKkufICMr2z/giphy.gif)
 
-Delete Expense
+- Delete Expense
+
+
 ![Delete Expense](https://media.giphy.com/media/6vj462etj3dQjlujF8/giphy.gif)
 
 
