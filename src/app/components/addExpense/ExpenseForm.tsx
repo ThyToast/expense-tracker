@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ExpenseData } from "../../data/ExpenseData";
 import { ExpenseContext } from "../../context/ExpenseContext";
 import { AddExpenseProp } from "../../data/NavigationData";
+import { storeExpense } from "../../api/expenseService";
 
 const ExpenseForm = () => {
   const expenseContext = useContext(ExpenseContext);
@@ -54,6 +55,7 @@ const ExpenseForm = () => {
 
   function submitExpense(expenseData: ExpenseData) {
     expenseContext.addExpense(expenseData);
+    storeExpense(expenseData);
     navigation.goBack();
   }
 
