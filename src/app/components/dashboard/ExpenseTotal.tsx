@@ -1,11 +1,20 @@
 import { StyleSheet, Text } from "react-native";
 import { Card } from "@rneui/themed";
-import { returnCurrency } from "../../utils/currencyUtil";
 
-const ExpenseTotal = ({ totalExpense }: { totalExpense: number }) => {
+import { returnCurrency } from "../../utils/currencyUtil";
+import { ExpenseData } from "../../data/ExpenseData";
+
+const ExpenseTotal = ({ expenseList }: { expenseList: ExpenseData[] }) => {
+  const totalExpense: number = expenseList.reduce(
+    (sum: number, expense: ExpenseData) => {
+      return sum + expense.amount;
+    },
+    0
+  );
+
   function colorState(expenseAmount: number) {
     if (expenseAmount < 0) return "red";
-    if (expenseAmount > 0) return "#57db3d";
+    if (expenseAmount >= 0) return "#57db3d";
   }
 
   return (

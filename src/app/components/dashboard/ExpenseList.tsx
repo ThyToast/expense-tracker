@@ -1,25 +1,42 @@
 import { View, FlatList, StyleSheet } from "react-native";
 import { FAB } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
+import { useContext, useEffect } from "react";
 
 import { ExpenseData } from "../../data/ExpenseData";
 import { DashboardProp } from "../../data/NavigationData";
-
 import ExpenseItem from "./ExpenseItem";
 import ExpenseTotal from "./ExpenseTotal";
+import { getExpense } from "../../api/expenseService";
+import { ExpenseContext } from "../../context/ExpenseContext";
 
 function displayExpenseItem({ item }: { item: ExpenseData }) {
   return <ExpenseItem {...item} />;
 }
 
-const ExpenseList = ({ expense }: any) => {
+const ExpenseList = () => {
+  const expenseContext = useContext(ExpenseContext);
+  const expenseList = expenseContext.expenses;
   const navigation = useNavigation<DashboardProp>();
-  const totalExpense: number = expense.reduce(
-    (sum: number, expense: ExpenseData) => {
-      return sum + expense.amount;
-    },
-    0
-  );
+  const controller = new AbortController();
+
+  useEffect(() => {
+    returnExpense();
+    return () => {
+      // cleanup function to prevent memeory leaks when unmounting occurs
+      controller.abort();
+      console.log("Unmounted: " + controller.signal.aborted);
+    };
+  }, []);
+
+  async function returnExpense() {
+    try {
+      const expenses = await getExpense(controller.signal);
+      expenseContext.setExpense(expenses);
+    } catch (error) {
+      alert("Unable to retrieve expenses");
+    }
+  }
 
   function toAddExpense() {
     navigation.navigate("AddExpense");
@@ -27,10 +44,10 @@ const ExpenseList = ({ expense }: any) => {
 
   return (
     <View>
-      <ExpenseTotal totalExpense={totalExpense} />
+      <ExpenseTotal expenseList={expenseList} />
       <FlatList
         style={styles.expenseList}
-        data={expense}
+        data={expenseList}
         renderItem={displayExpenseItem}
         keyExtractor={(item) => item.id}
       />

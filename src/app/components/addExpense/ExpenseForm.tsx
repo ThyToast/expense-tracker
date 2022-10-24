@@ -20,7 +20,7 @@ const ExpenseForm = () => {
   });
   const [checked, setChecked] = useState(false);
 
-  function updateExpense(inputType: any, value: any) {
+  function updateExpense(inputType: string, value: string) {
     setExpense((input) => {
       return {
         ...input,
@@ -35,6 +35,7 @@ const ExpenseForm = () => {
       id: itemId,
       category: expense.category,
       description: checked ? "Income" : "Expense",
+      date: new Date().toISOString(),
     };
     checkType(expenseData);
   }

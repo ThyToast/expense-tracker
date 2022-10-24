@@ -3,4 +3,9 @@ export interface ExpenseData {
   amount: number;
   category: string;
   description: string;
+  date: string;
+}
+
+export interface ExpenseListData {
+  expenses: ExpenseData[];
 }

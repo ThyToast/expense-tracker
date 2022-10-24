@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { StyleSheet, Text, Pressable, View } from "react-native";
 import { Card, Icon } from "@rneui/themed";
 import { SwipeRow } from "react-native-swipe-list-view";
+
 import { ExpenseContext } from "../../context/ExpenseContext";
 import { ExpenseData } from "../../data/ExpenseData";
 import { returnCurrency } from "../../utils/currencyUtil";
@@ -41,13 +42,13 @@ const ExpenseItem = ({ id, category, amount }: ExpenseData) => {
       <View>
         <Card containerStyle={styles.backCard}>
           <Pressable
-            style={{ paddingVertical: 30, height: 100, paddingRight: 15 }}
+            style={styles.cardDelete}
             android_ripple={{ color: "grey" }}
             onPress={() => {
               deleteItem(id);
             }}
           >
-            <Text style={styles.cardDelete}>Delete</Text>
+            <Text style={styles.textDelete}>Delete</Text>
           </Pressable>
         </Card>
       </View>
@@ -55,7 +56,7 @@ const ExpenseItem = ({ id, category, amount }: ExpenseData) => {
       <View>
         <Card containerStyle={{ padding: 0 }}>
           <Pressable
-            style={{ flexDirection: "row", padding: 15 }}
+            style={styles.cardSwipe}
             android_ripple={{ color: "grey" }}
           >
             <Icon
@@ -89,11 +90,17 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     padding: 0,
   },
-  cardDelete: {
+  textDelete: {
     justifyContent: "flex-end",
     textAlign: "right",
     color: "white",
   },
+  cardDelete: {
+    paddingVertical: 30,
+    height: 100,
+    paddingRight: 15,
+  },
+  cardSwipe: { flexDirection: "row", padding: 15 },
 });
 
 export default ExpenseItem;
